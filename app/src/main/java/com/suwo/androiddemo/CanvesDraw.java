@@ -35,15 +35,16 @@ public class CanvesDraw extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
        // drawLine(canvas);
-      // drawRect(canvas);
-//        drawArc(canvas);
-  //     drawBitmap(canvas);
+    //   drawRect(canvas);
+     //  drawArc(canvas);
+      //drawBitmap(canvas);
      //   translate(canvas);
 //        rotate(canvas);
 //        scale(canvas);
-       skew(canvas);
+  //     skew(canvas);
 //        clip(canvas);
 //       saveLayer(canvas);
+        drawAll(canvas);
     }
 
     private void saveLayer(Canvas canvas) {
@@ -129,15 +130,21 @@ public class CanvesDraw extends View {
 
         Matrix matrix = new Matrix();
         matrix.setRotate(60,mBitMap.getWidth()/2,mBitMap.getHeight());
-        canvas.drawBitmap(mBitMap,matrix,paint);
+        Bitmap rotateBitmap1 = Bitmap.createBitmap(mBitMap,0,0,mBitMap.getWidth()/2,mBitMap.getHeight(),matrix,true);
+
+        canvas.drawBitmap(rotateBitmap1,0,0,null);
 
         Matrix matrix2 = new Matrix();
         matrix.setRotate(120,mBitMap.getWidth()/2,mBitMap.getHeight());
-        canvas.drawBitmap(mBitMap,matrix2,paint);
+        Bitmap rotateBitmap2 = Bitmap.createBitmap(mBitMap,0,0,mBitMap.getWidth()/2,mBitMap.getHeight(),matrix2,true);
+
+        canvas.drawBitmap(rotateBitmap2,0,0,null);
 
         Matrix matrix3 = new Matrix();
         matrix3.setRotate(180,mBitMap.getWidth()/2,mBitMap.getHeight());
-        canvas.drawBitmap(mBitMap,matrix3,paint);
+        Bitmap rotateBitmap3 = Bitmap.createBitmap(mBitMap,0,0,mBitMap.getWidth()/2,mBitMap.getHeight(),matrix3,true);
+
+        canvas.drawBitmap(rotateBitmap3,0,0,null);
 
         Paint pointPaint = new Paint();
         pointPaint.setColor(Color.RED);
@@ -147,28 +154,28 @@ public class CanvesDraw extends View {
 
     private void drawArc(Canvas canvas) {
         Paint paint = new Paint();
-        paint.setColor(Color.RED);
+        paint.setColor(Color.BLACK);
 
-        RectF ovel1 = new RectF(20.0f,20.0f,180.0f,220.0f);
+        RectF ovel1 = new RectF(0.0f,20.0f,180.0f,220.0f);
         canvas.drawArc(ovel1,0,45,true,paint);
 
-        RectF ovel2 = new RectF(120.0f,20.0f,280.0f,220.0f);
+        RectF ovel2 = new RectF(80.0f,20.0f,280.0f,220.0f);
         canvas.drawArc(ovel2,0,90,true,paint);
 
-        RectF ovel3 = new RectF(300.0f,20.0f,460.0f,220.0f);
-        canvas.drawArc(ovel1,90,135,true,paint);
+        RectF ovel3 = new RectF(200.0f,20.0f,460.0f,220.0f);
+        canvas.drawArc(ovel3,90,135,true,paint);
 
-        RectF ovel4 = new RectF(480.0f,20.0f,640.0f,220.0f);
-        canvas.drawArc(ovel2,90,135,false,paint);
+        RectF ovel4 = new RectF(300.0f,20.0f,640.0f,220.0f);
+        canvas.drawArc(ovel4,90,135,false,paint);
     }
 
     private void drawRect(Canvas canvas) {
         Paint paint = new Paint();
-        paint.setColor(Color.RED);
+       paint.setColor(Color.RED);
         canvas.drawRect(new Rect(10,10,600,500),paint);
 
         paint.setColor(Color.BLUE);
-        canvas.drawRect(new Rect(20,700,900,900),paint);
+        canvas.drawRect(new Rect(20,70,900,900),paint);
     }
 
     private void drawLine(Canvas canvas) {
@@ -181,5 +188,65 @@ public class CanvesDraw extends View {
 
         paint.setColor(Color.BLACK);
         canvas.drawPoint(200,200,paint);
+    }
+    private void drawAll(Canvas canvas){
+        int x=0,y=0;
+        int height = 100;
+        Paint paint = new Paint();
+        paint.setStrokeWidth(10);
+        paint.setColor(Color.BLACK);
+        canvas.drawLine(x,y+height+21,x+canvas.getWidth(),y+height-1,paint);
+
+        paint.setColor(Color.YELLOW);
+        canvas.drawPoint(10,100,paint);
+
+
+        paint.setColor(Color.RED);
+        canvas.drawRect(new Rect(10,10,600,100),paint);
+
+        paint.setColor(Color.BLUE);
+        canvas.drawRect(new Rect(20,70,900,100),paint);
+
+        paint.setColor(Color.BLACK);
+
+        RectF ovel1 = new RectF(20.0f,70.0f,180.0f,220.0f);
+        canvas.drawArc(ovel1,0,45,true,paint);
+
+        RectF ovel2 = new RectF(100.0f,70.0f,280.0f,220.0f);
+        canvas.drawArc(ovel2,0,90,true,paint);
+
+        RectF ovel3 = new RectF(200.0f,70.0f,460.0f,220.0f);
+        canvas.drawArc(ovel3,90,135,true,paint);
+
+        RectF ovel4 = new RectF(300.0f,70.0f,640.0f,220.0f);
+        canvas.drawArc(ovel4,90,135,false,paint);
+
+        Bitmap mBitMap = BitmapFactory.decodeResource(getResources(),R.drawable.tumanman);
+
+
+        canvas.drawBitmap(mBitMap,480,80,paint);
+
+        Matrix matrix = new Matrix();
+        matrix.setRotate(60,mBitMap.getWidth()/10,mBitMap.getHeight()/10);
+        Bitmap rotateBitmap1 = Bitmap.createBitmap(mBitMap,0,0,mBitMap.getWidth()/10,mBitMap.getHeight()/10,matrix,true);
+
+        canvas.drawBitmap(rotateBitmap1,0,100,null);
+
+        Matrix matrix2 = new Matrix();
+        matrix.setRotate(120,mBitMap.getWidth()/5,mBitMap.getHeight()/2);
+        Bitmap rotateBitmap2 = Bitmap.createBitmap(mBitMap,0,0,mBitMap.getWidth()/5,mBitMap.getHeight()/2,matrix2,true);
+
+        canvas.drawBitmap(rotateBitmap2,480,80,null);
+
+        Matrix matrix3 = new Matrix();
+        matrix3.setRotate(180,mBitMap.getWidth()/5,mBitMap.getHeight()/2);
+        Bitmap rotateBitmap3 = Bitmap.createBitmap(mBitMap,0,0,mBitMap.getWidth()/5,mBitMap.getHeight()/2,matrix3,true);
+
+        canvas.drawBitmap(rotateBitmap3,480,80,null);
+
+        Paint pointPaint = new Paint();
+        pointPaint.setColor(Color.RED);
+        pointPaint.setStrokeWidth((float) 20.0);
+        canvas.drawPoint(mBitMap.getWidth()/5,mBitMap.getHeight()/2,pointPaint);
     }
 }
